@@ -11,12 +11,6 @@ contract Contract {
 
     address private testKeeperAddress;
 
-    /*
-    constructor(address keeperAddress) {
-        testKeeperAddress = keeperAddress;
-    }
-    */
-
     function store() external view returns (address) {
         return testKeeperAddress;
     }
@@ -24,16 +18,6 @@ contract Contract {
     function upkeep() external {
         address[] memory addy = new address[](1);
         addy[0] = ADDRESSES;
-        /*
-        assembly {
-            let success := call(
-                gas(),
-                ADDRESSES,
-                0,
-
-            )
-        }
-        */
         IPoolKeeper(POOLKEEPER_ADDRESS).performUpkeepMultiplePools(addy);
     }
 }
